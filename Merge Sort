@@ -1,0 +1,68 @@
+class solution{
+public:
+  
+   void merge(int arr[], int l, int m, int r)
+    {
+         int mid= m;
+         
+         //deciding size of two sub array that will be divided from main array
+         int len1= mid-l+1;
+         int len2= r-mid;
+         
+         //creating the sub arrays dynamically
+         
+         int *first= new int[len1];
+         int *second= new int[len2];
+         
+         //copying the elems from main array to sub arrays
+         
+         int mainArrayInd=l;
+          for(int i=0; i<len1; i++){
+              first[i]=arr[mainArrayInd++]; 
+         }
+         
+          
+          for(int i=0;i<len2;i++){
+             second[i]=arr[mainArrayInd++];
+          }
+          
+          //merging of two arrays 
+          
+          int index1=0;
+          int index2=0;
+          
+          mainArrayInd=l;
+          
+          while(index1<len1 && index2<len2){
+          
+            if(first[index1]<second[index2])
+              arr[mainArrayInd++]=first[index1++];
+            else 
+            arr[mainArrayInd++]= second[index2++];
+          }
+           while(index1<len1){
+             arr[mainArrayInd++]=first[index1++];
+         }
+         while(index2<len2){
+             arr[mainArrayInd++]=second[index2++];
+         }
+         
+          delete [] first;
+          delete [] second;
+    }
+public:
+    void mergeSort(int arr[], int l, int r)
+    {
+    
+       if(l>=r){
+            return;
+        }
+        int mid=l+(r-l)/2;
+        
+        
+        mergeSort(arr,l,mid);
+        mergeSort(arr,mid+1,r);
+        
+        merge(arr,l,mid,r);
+    }
+};
