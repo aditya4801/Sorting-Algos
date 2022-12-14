@@ -1,42 +1,46 @@
-int partition(int arr[],int s,int e){
-   
-   int pivot= arr[s];
-   int count=0;
-   
-   for(int i=s+1; i<e;i++){
-      if(arr[i]>pivot)
-         count++;
-   }
-   int rightInd= s+ count;
-   
-   swap(arr[rightInd], arr[s]);
-   
-   int i=s, j=e;
-   
-   while(i< rightInd && j> rightInd){
-     
-     while(arr[i]< pivot){
-        i++; 
-     }
-     while(arr[j]>pivot){
-        j--;
-     }
-     
-     if(arr[i]<arr[j]{
-     
-        swap(arr[i],arr[j]);
-     }
-   }
-   return rightInd;
-}
+class solution{
+public:
 
-void quickSort(int arr[], int s, int e) {
-  
-  if(s>=e)
-  return;
-  
-  int p= partition(arr,s,e);
-  
-  quickSort(arr,s,p);
-  quickSort(arr,p+1,e);
-}
+void quickSort(int arr[], int low, int high)
+    {
+        if(low>=high)
+        return;
+       
+        int p= partition(arr,low,high);
+       
+        quickSort(arr,low,p-1);
+        quickSort(arr,p+1,high);
+    }
+    
+    public:
+    int partition (int arr[], int low, int high)
+    {
+       int pivot= arr[low];
+       int count=0;
+       for(int i=low+1 ; i<=high; i++){
+           if(arr[i]<=pivot){
+           count++;
+           }
+       }
+       int rightInd= low+count;
+       
+       swap(arr[rightInd],arr[low]);
+       
+       int i=low,j=high;
+       
+       while(i<rightInd && j>rightInd){
+       
+       while(arr[i] <= pivot){
+           i++;
+       }
+       while(arr[j]>pivot){
+           j--;
+       }
+       
+       if(i<rightInd && j>rightInd){
+           swap(arr[i++],arr[j--]);
+       }
+       }
+       return rightInd;
+    }
+};
