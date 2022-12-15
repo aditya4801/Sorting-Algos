@@ -15,17 +15,22 @@ void quickSort(int arr[], int low, int high)
     public:
     int partition (int arr[], int low, int high)
     {
+    //taking first element as pivot element
        int pivot= arr[low];
        int count=0;
+       //finding all the nos that are less than pivot and counting
        for(int i=low+1 ; i<=high; i++){
            if(arr[i]<=pivot){
            count++;
            }
        }
+       //finding the right index for pivot elem 
        int rightInd= low+count;
        
+       //swapping pivot to its right index
        swap(arr[rightInd],arr[low]);
        
+       //taking two pointer and comparing the elems and sorting left side and right side of the pivot elem
        int i=low,j=high;
        
        while(i<rightInd && j>rightInd){
