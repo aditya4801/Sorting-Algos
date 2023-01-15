@@ -1,3 +1,5 @@
+Time complexity of O(n log n) it can sort larger arrays better than the other sorting algos
+
 class solution{
 public:
   
